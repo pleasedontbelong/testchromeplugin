@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'corsheaders',
     'sandboxes',
     'rest_framework',
+    'channels',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -143,3 +144,14 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+        "ROUTING": "main.routing.channel_routing",
+    },
+}
