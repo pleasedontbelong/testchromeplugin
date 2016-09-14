@@ -1,0 +1,29 @@
+{
+  "name": "Botify Slack Chrome Extension",
+  "description": "Botify Slack Chrome Extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "minimum_chrome_version": "26",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": ""
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://botify.slack.com/*",
+      "https://localhost:3000/*"
+    ],
+    "css": [],
+    "js": [
+      "dist/bundle.js"
+    ]
+  }],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
