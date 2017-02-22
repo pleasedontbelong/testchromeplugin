@@ -9,32 +9,34 @@ class Sandbox extends Component {
     const callback = this.props.callback;
     return (
       <li>
-        <form>
-          <strong>{ name }</strong><br/>
-          <input
-            ref="user"
-            name="user"
-            className="small"
-            placeholder="User"
-            defaultValue={ user }/><br/>
-          <input
-            ref="branch"
-            name="branch"
-            className="small"
-            placeholder="Branch deployed"
-            defaultValue={ branch }/>
-          <span>{ date_assigned }</span><br/>
-        </form>
-        <button onClick={(e) => {
-          console.log(this.refs);
-        }}>
-          Save
-        </button>
-        <button onClick={(e) => {
-          console.log(this.refs);
-        }}>
-          Deploy
-        </button>
+        <strong>{ name }</strong><br/>
+        <input
+          type="text"
+          ref="user"
+          name="user"
+          className="small"
+          placeholder="User"
+          defaultValue={ user }/><br/>
+        <input
+          type="text"
+          ref="branch"
+          name="branch"
+          className="small"
+          placeholder="Branch deployed"
+          defaultValue={ branch }/>
+        <span>{ date_assigned }</span>
+        <div className="modal-footer">
+          <button className="btn" onClick={(e) => {
+            console.log(this.refs);
+          }}>
+            Save
+          </button>
+          <button className="btn" onClick={(e) => {
+            console.log(this.refs);
+          }}>
+            Deploy
+          </button>
+        </div>
       </li>
     );
   }
@@ -54,7 +56,7 @@ class Sandboxes extends Component {
       this.props.source,
       (data) => {
         this.setState({
-          sandboxes: data.results,
+          sandboxes: data,
         });
     });
   }
@@ -77,13 +79,16 @@ class Sandboxes extends Component {
   }
 
   renderSandboxes(){
-    return (
-      <ul>
-        {this.state.sandboxes.map((sandbox) => {
-          return <Sandbox data={sandbox}/>;
-        })}
-      </ul>
-    );
+    if (this.state.sandboxes && this.state.sandboxes.length){
+      return (
+        <ul>
+          {this.state.sandboxes.map((sandbox) => {
+            return <Sandbox data={sandbox}/>;
+          })}
+        </ul>
+      );
+    }
+    return '';
   }
 }
 

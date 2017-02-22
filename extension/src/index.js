@@ -26,6 +26,6 @@ $(() => {
   });
 
   /* Init react items */
-  render(<Sandboxes source="https://3d4b7055.ngrok.io/sandboxes/"/>, document.querySelector('#sandboxes_tab'));
+  render(<Sandboxes source="https://2ec58559.ngrok.io/sandboxes/"/>, document.querySelector('#sandboxes_tab'));
 
 });
